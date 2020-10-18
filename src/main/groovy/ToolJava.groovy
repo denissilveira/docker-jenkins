@@ -2,7 +2,7 @@ import hudson.model.JDK
 import hudson.tools.InstallSourceProperty
 import hudson.tools.ZipExtractionInstaller
 
-def descriptor = new JDK.DescriptorImpl();
+def descriptor = new JDK.DescriptorImpl()
 
 def List<JDK> installations = []
 

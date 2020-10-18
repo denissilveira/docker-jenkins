@@ -15,7 +15,7 @@ def home_dir = System.getenv("JENKINS_HOME")
 def properties = new ConfigSlurper().parse(new File("$home_dir/config/credentials.properties").toURI().toURL())
 
 global_domain = Domain.global()
-credentials_store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+credentials_store = Jenkins.getInstanceOrNull().getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
 
 println "############################ STARTING CREDENTIALS CONFIG ############################"
 

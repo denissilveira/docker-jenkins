@@ -5,7 +5,7 @@ import hudson.slaves.EnvironmentVariablesNodeProperty
 import hudson.slaves.EnvironmentVariablesNodeProperty.Entry
 
 def addGlobalEnvVariable(Class jenkins, String key, String value) {
-  instance = jenkins.getInstance()
+  instance = jenkins.getInstanceOrNull()
   globalNodeProperties = instance.getGlobalNodeProperties()
   envVarsNodePropertyList = globalNodeProperties.getAll(hudson.slaves.EnvironmentVariablesNodeProperty.class)
   if ( envVarsNodePropertyList == [] ) {

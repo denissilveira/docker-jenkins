@@ -3,22 +3,23 @@ import hudson.model.*
 import jenkins.model.*
 import java.net.InetAddress
 
-// load helpers and read properties
+// load Helpers and read properties
 def home_dir = System.getenv("JENKINS_HOME")
 GroovyShell shell = new GroovyShell()
-def helpers = shell.parse(new File("$home_dir/init.groovy.d/helpers.groovy"))
+def helpers = shell.parse(new File("$home_dir/init.groovy.d/Helpers.groovy"))
 def properties = new ConfigSlurper().parse(new File("$home_dir/config/globals.properties").toURI().toURL())
 
 println "############################ STARTING GLOBAL SETUP ############################"
 
 println ">>> set number of executors on master to ${properties.global.numExecutorsOnMaster}"
-Jenkins.instance.setNumExecutors(properties.global.numExecutorsOnMaster)
+def inst = Jenkins.getInstanceOrNull()
+inst.setNumExecutors(properties.global.numExecutorsOnMaster)
 
 println ">>> set quite period to ${properties.global.scmQuietPeriod}"
-Jenkins.instance.setQuietPeriod(properties.global.scmQuietPeriod)
+inst.setQuietPeriod(properties.global.scmQuietPeriod)
 
 println ">>> set checkout retry to ${properties.global.scmCheckoutRetryCount}"
-Jenkins.instance.setScmCheckoutRetryCount(properties.global.scmCheckoutRetryCount)
+inst.setScmCheckoutRetryCount(properties.global.scmCheckoutRetryCount)
 
 // Change it to the DNS name if you have it
 jlc = JenkinsLocationConfiguration.get()
@@ -41,7 +42,6 @@ if (properties.global.jenkinsAdminEmail) {
 }
 
 println ">>> Set Global GIT configuration name to ${properties.global.git.name} and email address to ${properties.global.git.email}"
-def inst = Jenkins.getInstance()
 def desc = inst.getDescriptor("hudson.plugins.git.GitSCM")
 desc.setGlobalConfigName(properties.global.git.name)
 desc.setGlobalConfigEmail(properties.global.git.email)
@@ -76,7 +76,7 @@ if ( env.containsKey('master_image_version') ) {
                   "Jenkins-Docker Version: ${env['master_image_version']}\n" +
                   "Deployment date: ${sdf.format(date)}\n\n"
   println "Set system message to:\n ${systemMessage}"
-  Jenkins.instance.setSystemMessage(systemMessage)
+  inst.setSystemMessage(systemMessage)
 } else {
   println "Can't set system message - missing env variable master_image_version"
 }

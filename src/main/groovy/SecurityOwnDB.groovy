@@ -15,6 +15,6 @@ if(properties.owndb.enabled) {
     println ">>> Added user ${value.userId}"
   }
 
-  Jenkins.instance.setSecurityRealm(realm)
-  Jenkins.instance.save()
+  Jenkins.getInstanceOrNull().setSecurityRealm(realm)
+  Jenkins.getInstanceOrNull().save()
 }
