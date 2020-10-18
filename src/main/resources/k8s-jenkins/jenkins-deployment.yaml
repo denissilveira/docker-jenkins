@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: deniswee/docker-jenkins:3.1.1
+          image: deniswee/docker-jenkins:3.1.7
           env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false

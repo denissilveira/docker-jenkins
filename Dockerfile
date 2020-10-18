@@ -1,8 +1,8 @@
-FROM jenkins/jenkins:2.60.3
+FROM jenkins/jenkins:2.262
 
 LABEL Author="Denis Silveira"
 
-ARG master_image_version="v.3.1.1"
+ARG master_image_version="v.3.1.7"
 ENV master_image_version $master_image_version
 
 ENV KUBERNETES_SERVER_URL "http://kubernetes:8443"

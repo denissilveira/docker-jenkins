@@ -4,10 +4,10 @@ dockerhub_user=deniswee
 
 jenkins_port=8080
 image_name=docker-jenkins
-image_version=3.1.1
+image_version=3.1.7
 container_name=docker-jenkins
 
-docker pull jenkins:2.60.3
+docker pull jenkins:2.262
 
 if [ ! -d downloads ]; then
     mkdir downloads
