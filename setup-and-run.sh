@@ -4,7 +4,7 @@ dockerhub_user=deniswee
 
 jenkins_port=8080
 image_name=docker-jenkins
-image_version=3.1.0
+image_version=3.1.1
 container_name=docker-jenkins
 
 docker pull jenkins:2.60.3
